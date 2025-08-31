@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image Slider</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <div class="slider">
+      <div class="slider__image" style="display: block">
+        <img
+          src="https://images.unsplash.com/photo-1682686581854-5e71f58e7e3f?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          alt=""
+        />
+      </div>
+      <div class="slider__image">
+        <img
+          src="https://plus.unsplash.com/premium_photo-1673697239981-389164b7b87f?q=80&w=1688&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          alt=""
+        />
+      </div>
+      <div class="slider__image">
+        <img
+          src="https://images.unsplash.com/photo-1518495973542-4542c06a5843?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          alt=""
+        />
+      </div>
+      <button class="btn prev">&lt;</button>
+      <button class="btn next">></button>
+    </div>
+  </body>
+  <script>
+    let slides = document.querySelectorAll(".slider__image");
+    let prevBtn = document.querySelector(".prev");
+    let nextBtn = document.querySelector(".next");
+
+    function next() {
+      let currentSlide;
+      slides.forEach((slide, index) => {
+        if (slide.style.display === "block") {
+          currentSlide = index;
+          slide.style.display = "none";
+        }
+      });
+      let nextSlide = (currentSlide + 1) % slides.length;
+      slides[nextSlide].style.display = "block";
+    }
+
+    nextBtn.addEventListener("click", next);
+
+    prevBtn.addEventListener("click", () => {
+      let currentSlide;
+      slides.forEach((slide, index) => {
+        if (slide.style.display === "block") {
+          currentSlide = index;
+          slide.style.display = "none";
+        }
+      });
+      let prevSlide = (currentSlide - 1 + slides.length) % slides.length;
+      slides[prevSlide].style.display = "block";
+    });
+
+    setInterval(next, 3000);
+  </script>
+</html>
